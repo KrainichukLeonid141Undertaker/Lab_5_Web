@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна робота №5 - Форми</title>
+    <style>
+        /* Базові стилі для кращої читабельності */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        form, fieldset {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+        legend {
+            font-weight: bold;
+            font-size: 1.2em;
+            padding: 0 10px;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="number"],
+        input[type="datetime-local"],
+        textarea,
+        select {
+            width: 95%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .total-price {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: green;
+        }
+        .key-gen-class {
+            border: 1px dashed red;
+            padding: 5px;
+        }
+    </style>
+    
+    </head>
+<body>
+
+    <h1>Форма замовлення товарів "FutureTech Gadgets"</h1>
+
+    <form action="#" 
+          id="orderForm" 
+          method="post" 
+          dir="ltr" 
+          enctype="multipart/form-data" 
+          accept-charset="UTF-8" 
+          accept="image/png, image/jpeg">
+
+        <fieldset>
+            <legend lang="uk" title="Особиста інформація" dir="ltr">Контактна інформація</legend>
+
+            <label for="nameInput" title="Введіть ваше повне ім'я" style="color: blue;">Ваше ПІБ (мін. 5 символів):</label>
+            <input type="text" id="nameInput" name="username" size="30" minlength="5" lang="uk" value="Іван Іванов" form="orderForm" required>
+
+            <label for="passInput">Пароль:</label>
+            <input type="password" id="passInput" name="userpass" required>
+        </fieldset>
+
+        <fieldset>
+            <legend>Вибір товару</legend>
+
+            <p>Оберіть модель:</p>
+            <input type="radio" id="modelX" name="product" value="modelX" checked>
+            <label for="modelX" style="display: inline-block;">Gadget Model X (100 грн)</label>
+            <br>
+            <input type="radio" id="modelY" name="product" value="modelY">
+            <label for="modelY" style="display: inline-block;">Gadget Model Y (150 грн)</label>
+
+            <label for="quantityInput">Кількість (від 1 до 10):</label>
+            <input type="number" id="quantityInput" name="quantity" min="1" max="10" value="1">
+            
+            <p><b>Загальна сума (приблизно):</b></p>
+            <output name="totalSum" id="totalOutput" class="total-price" style="font-weight: bold; color: green;" for="quantityInput">100 грн</output>
+
+            <label for="addonsSelect">Додаткові опції:</label>
+            <select id="addonsSelect" name="addons" multiple size="3" style="background-color: #eee;" autofocus>
+                <option id="opt1" dir="ltr" title="Додаткова гарантія на 3 роки" label="Гарантія" value="warranty">Розширена гарантія (+50 грн)</option>
+                <option id="opt2" dir="ltr" title="Фірмовий чохол" label="Чохол" value="case">Фірмовий чохол (+20 грн)</option>
+                <option id="opt3" dir="ltr" title="Швидка зарядка" label="Зарядка" value="charger">Швидка зарядка (+30 грн)</option>
+            </select>
+            
+            <label for="promoInput">Промокод:</label>
+            <input type="text" id="promoInput" name="promo" list="promoList">
+            <datalist id="promoList" title="Список доступних промокодів" lang="en">
+                <option value="SALE2025">
+                <option value="NEWUSER">
+                <option value="BLACKFRIDAY">
+            </datalist>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>Доставка та коментарі</legend>
+
+            <label for="deliveryTime">Бажаний час доставки:</label>
+            <input type="datetime-local" id="deliveryTime" name="deliveryTime">
+
+            <label for="fileUpload">Завантажити чек (якщо є):</label>
+            <input type="file" id="fileUpload" name="userFile">
+
+            <label for="commentArea">Коментар до замовлення (мін. 10 символів):</label>
+            <textarea id="commentArea" 
+                      name="comment" 
+                      rows="4" 
+                      minlength="10" 
+                      placeholder="Введіть ваш коментар тут..." 
+                      style="resize: vertical;" 
+                      dirname="comment.dir" 
+                      form="orderForm"></textarea>
+
+            <label for="keyGen">Генерація ключа (застарілий тег):</label>
+            <keygen id="keyGen" name="securityKey" disabled class="key-gen-class" keytype="rsa" title="Генератор ключів" style="border: 1px dashed red;">
+        </fieldset>
+
+        <details id="termsDetails" dir="rtl" lang="uk">
+            <summary style="direction: ltr;">Умови та положення (натисніть, щоб розкрити)</summary>
+            <p>1. Вся інформація на цій сторінці є вигаданою для лабораторної роботи.</p>
+            <p>2. Відправка на сервер не відбувається (`action="#"`).</p>
+            <p>3. Напрямок цього тексту (dir) встановлено як 'rtl'.</p>
+        </details>
+
+        <fieldset>
+            <legend>Відправка форми</legend>
+
+            <p>Відправка-зображення (відкриє в новій вкладці):</p>
+            <input type="image" 
+                   src="https://via.placeholder.com/150x50.png?text=Submit+Image" 
+                   alt="Відправити як зображення" 
+                   height="50" 
+                   formaction="#imageSubmit" 
+                   formtarget="_blank">
+
+            <p>Кнопка, що відміняє валідацію (minlength):</p>
+            <button type="submit" 
+                    name="submitBtn" 
+                    value="buttonValue" 
+                    formmethod="get" 
+                    formnovalidate>
+                Відправити (БЕЗ валідації)
+            </button>
+            
+            <hr>
+            <input type="submit" value="Відправити інформацію (з валідацією)" style="font-weight: bold; padding: 10px; background-color: lightgreen;">
+
+        </fieldset>
+
+    </form>
+
+    <hr>
+    <h2>Елементи поза формою (зв'язані через 'form' id)</h2>
+    <label for="externalInput" 
+           form="orderForm" 
+           title="Це поле не всередині тегу <form>" 
+           style="font-weight: bold; color: purple;">
+           Зовнішнє поле (зв'язане з формою):
+    </label>
+    <input type="text" id="externalInput" name="externalField" form="orderForm" placeholder="Це поле відправиться разом з формою">
+
+</body>
+</html>
